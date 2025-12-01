@@ -8,4 +8,10 @@ RUN apt update && \
     openjdk-17-jdk && \
   rm -rf /var/lib/apt/lists/*
 
-RUN pip install -r requirements.txt
+WORKDIR /opt/app
+
+COPY . .
+
+RUN pip install --no-cache-dir -r requirements.txt && mkdir -p /logs
+
+CMD ["python", "main.py"]
