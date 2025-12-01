@@ -1,0 +1,24 @@
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: workspace-devcontainer:latest
+    container_name: ingest
+    platform: linux/amd64
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+    depends_on:
+      - sql-server
+
+  sql-server:
+    image: ghcr.io/philipbudden/assets/mssql-purchasing:latest
+    platform: linux/amd64
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql-server:/var/opt/mssql
+
+volumes:
+  sql-server:

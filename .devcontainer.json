@@ -1,9 +1,7 @@
 {
   "name": "ingest-pyspark",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
   "service": "workspace",
+  "dockerComposeFile": "docker-compose.yaml",
   "features": {
     "ghcr.io/devcontainer-community/devcontainer-features/chezmoi.io:1": {}
   },
@@ -12,4 +10,3 @@
   "postCreateCommand": "pip install --upgrade pip && pip install -r requirements-dev.txt && pre-commit install",
   "remoteUser": "vscode",
 }
-
